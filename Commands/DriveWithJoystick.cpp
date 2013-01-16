@@ -23,6 +23,7 @@ void DriveWithJoystick::Initialize() {
 			Robot::driveTrain->cANJaguar3, 
 			Robot::driveTrain->cANJaguar4);
 }
+
 // Called repeatedly when this Command is scheduled to run
 void DriveWithJoystick::Execute() {
 	drive->MecanumDrive_Cartesian(
@@ -31,6 +32,7 @@ void DriveWithJoystick::Execute() {
 			Robot::oi->getDriver()->GetTwist(),
 			Robot::driveTrain->gyro->GetAngle());
 }
+
 // Make this return true when this Command no longer needs to run execute()
 bool DriveWithJoystick::IsFinished() {
 	return false;
