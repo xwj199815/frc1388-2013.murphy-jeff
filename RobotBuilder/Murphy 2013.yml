@@ -101,17 +101,17 @@ Children:
       Children: []
       Properties:
         Input Channel (Digital): !!robotbuilder.data.properties.ChoicesProperty
-          choices: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12',
-            '13', '14']
+          choices: &id008 ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11',
+            '12', '13', '14']
           default: '1'
           name: Input Channel (Digital)
-          validators: [DigitalChannel]
+          validators: &id009 [DigitalChannel]
           value: '1'
         Input Module (Digital): !!robotbuilder.data.properties.ChoicesProperty
-          choices: ['1', '2']
+          choices: &id010 ['1', '2']
           default: '1'
           name: Input Module (Digital)
-          validators: [DigitalChannel]
+          validators: &id011 [DigitalChannel]
           value: '1'
     Properties:
       Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
@@ -141,6 +141,22 @@ Children:
           name: Output Channel (PWM)
           validators: *id007
           value: '2'
+    - Name: Limit Switch
+      Base: Limit Switch
+      Children: []
+      Properties:
+        Input Channel (Digital): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id008
+          default: '1'
+          name: Input Channel (Digital)
+          validators: *id009
+          value: '2'
+        Input Module (Digital): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id010
+          default: '1'
+          name: Input Module (Digital)
+          validators: *id011
+          value: '1'
     Properties:
       Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Default Command, type: Command, validators: null, value: None}
@@ -230,48 +246,48 @@ Children:
       Children: []
       Properties:
         Output Module (Digital): !!robotbuilder.data.properties.ChoicesProperty
-          choices: &id008 ['1', '2']
+          choices: &id012 ['1', '2']
           default: '1'
           name: Output Module (Digital)
-          validators: &id009 [RelayOutput]
+          validators: &id013 [RelayOutput]
           value: '1'
         Output Channel (Relay): !!robotbuilder.data.properties.ChoicesProperty
-          choices: &id010 ['1', '2', '3', '4', '5', '6', '7', '8']
+          choices: &id014 ['1', '2', '3', '4', '5', '6', '7', '8']
           default: '1'
           name: Output Channel (Relay)
-          validators: &id011 [RelayOutput]
+          validators: &id015 [RelayOutput]
           value: '1'
     - Name: White
       Base: Spike
       Children: []
       Properties:
         Output Module (Digital): !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id008
+          choices: *id012
           default: '1'
           name: Output Module (Digital)
-          validators: *id009
+          validators: *id013
           value: '1'
         Output Channel (Relay): !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id010
+          choices: *id014
           default: '1'
           name: Output Channel (Relay)
-          validators: *id011
+          validators: *id015
           value: '2'
     - Name: Blue
       Base: Spike
       Children: []
       Properties:
         Output Module (Digital): !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id008
+          choices: *id012
           default: '1'
           name: Output Module (Digital)
-          validators: *id009
+          validators: *id013
           value: '1'
         Output Channel (Relay): !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id010
+          choices: *id014
           default: '1'
           name: Output Channel (Relay)
-          validators: *id011
+          validators: *id015
           value: '3'
     Properties:
       Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,

@@ -18,6 +18,7 @@ Gyro* RobotMap::driveTrainGyro = NULL;
 SpeedController* RobotMap::shoulderMotor = NULL;
 DigitalInput* RobotMap::shoulderLimitSwitch = NULL;
 SpeedController* RobotMap::elbowMotor = NULL;
+DigitalInput* RobotMap::elbowLimitSwitch = NULL;
 SpeedController* RobotMap::gripperTopRoller = NULL;
 SpeedController* RobotMap::gripperBottomRoller = NULL;
 SpeedController* RobotMap::minibotDeploymentMotor = NULL;
@@ -51,6 +52,9 @@ void RobotMap::init() {
 	
 	elbowMotor = new Victor(1, 2);
 	lw->AddActuator("Elbow", "Motor", (Victor*) elbowMotor);
+	
+	elbowLimitSwitch = new DigitalInput(1, 2);
+	lw->AddSensor("Elbow", "Limit Switch", elbowLimitSwitch);
 	
 	gripperTopRoller = new Victor(1, 3);
 	lw->AddActuator("Gripper", "Top Roller", (Victor*) gripperTopRoller);

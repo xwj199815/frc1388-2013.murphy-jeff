@@ -27,6 +27,7 @@ public:
 	static SpeedController* shoulderMotor;
 	static DigitalInput* shoulderLimitSwitch;
 	static SpeedController* elbowMotor;
+	static DigitalInput* elbowLimitSwitch;
 	static SpeedController* gripperTopRoller;
 	static SpeedController* gripperBottomRoller;
 	static SpeedController* minibotDeploymentMotor;
