@@ -8,6 +8,8 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in th future.
 #include "DriveWithJoystick.h"
+#include "../Utilities/deadband.h"
+
 DriveWithJoystick::DriveWithJoystick() {
 	// Use requires() here to declare subsystem dependencies
 	// eg. requires(chassis);
@@ -23,12 +25,20 @@ void DriveWithJoystick::Initialize() {
 			Robot::driveTrain->cANJaguar3, 
 			Robot::driveTrain->cANJaguar4);
 }
+
 // Called repeatedly when this Command is scheduled to run
 void DriveWithJoystick::Execute() {
+	// This is the deadband value for the driver joystick:
+	float driverDeadband = 0.1;
+	
+	float driverX = Robot::oi->getDriver()->GetX();
+	float driverY = Robot::oi->getDriver()->GetY();
+	float driverZ = Robot::oi->getDriver()->GetTwist();
+	
 	drive->MecanumDrive_Cartesian(
-			Robot::oi->getDriver()->GetX(),
-			Robot::oi->getDriver()->GetY(),
-			Robot::oi->getDriver()->GetTwist(),
+			deadband(driverX, driverDeadband),
+			deadband(driverY, driverDeadband),
+			deadband(driverZ, driverDeadband),
 			Robot::driveTrain->gyro->GetAngle());
 }
 // Make this return true when this Command no longer needs to run execute()
