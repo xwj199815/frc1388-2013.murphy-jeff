@@ -25,6 +25,7 @@ public:
 	static CANJaguar* driveTrainCANJaguar4;
 	static Gyro* driveTrainGyro;
 	static SpeedController* shoulderMotor;
+	static DigitalInput* shoulderLimitSwitch;
 	static SpeedController* elbowMotor;
 	static SpeedController* gripperTopRoller;
 	static SpeedController* gripperBottomRoller;

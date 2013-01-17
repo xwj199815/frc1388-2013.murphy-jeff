@@ -16,6 +16,7 @@ CANJaguar* RobotMap::driveTrainCANJaguar3 = NULL;
 CANJaguar* RobotMap::driveTrainCANJaguar4 = NULL;
 Gyro* RobotMap::driveTrainGyro = NULL;
 SpeedController* RobotMap::shoulderMotor = NULL;
+DigitalInput* RobotMap::shoulderLimitSwitch = NULL;
 SpeedController* RobotMap::elbowMotor = NULL;
 SpeedController* RobotMap::gripperTopRoller = NULL;
 SpeedController* RobotMap::gripperBottomRoller = NULL;
@@ -44,6 +45,9 @@ void RobotMap::init() {
 	driveTrainGyro->SetSensitivity(0.007);
 	shoulderMotor = new Victor(1, 1);
 	lw->AddActuator("Shoulder", "Motor", (Victor*) shoulderMotor);
+	
+	shoulderLimitSwitch = new DigitalInput(1, 1);
+	lw->AddSensor("Shoulder", "Limit Switch", shoulderLimitSwitch);
 	
 	elbowMotor = new Victor(1, 2);
 	lw->AddActuator("Elbow", "Motor", (Victor*) elbowMotor);
