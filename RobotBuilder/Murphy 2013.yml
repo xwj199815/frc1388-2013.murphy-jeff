@@ -291,7 +291,7 @@ Children:
           value: '3'
     Properties:
       Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: Default Command, type: Command, validators: null, value: None}
+        name: Default Command, type: Command, validators: null, value: Lights}
   Properties: {}
 - Name: Operator Interface
   Base: OI
@@ -301,11 +301,41 @@ Children:
     Children: []
     Properties:
       Number: !!robotbuilder.data.properties.ChoicesProperty
-        choices: ['1', '2', '3', '4']
+        choices: &id016 ['1', '2', '3', '4']
         default: 1
         name: Number
-        validators: [Joystick]
+        validators: &id017 [Joystick]
         value: '1'
+  - Name: Shoulder Stick
+    Base: Joystick
+    Children: []
+    Properties:
+      Number: !!robotbuilder.data.properties.ChoicesProperty
+        choices: *id016
+        default: 1
+        name: Number
+        validators: *id017
+        value: '2'
+  - Name: Elbow Stick
+    Base: Joystick
+    Children: []
+    Properties:
+      Number: !!robotbuilder.data.properties.ChoicesProperty
+        choices: *id016
+        default: 1
+        name: Number
+        validators: *id017
+        value: '3'
+  - Name: CCI
+    Base: Joystick
+    Children: []
+    Properties:
+      Number: !!robotbuilder.data.properties.ChoicesProperty
+        choices: *id016
+        default: 1
+        name: Number
+        validators: *id017
+        value: '4'
   Properties: {}
 - Name: Commands
   Base: Commands
@@ -326,6 +356,14 @@ Children:
         name: Requires, type: Subsystem, validators: null, value: Drive Train}
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: false}
+  - Name: Lights
+    Base: Command
+    Children: []
+    Properties:
+      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Requires, type: Subsystem, validators: null, value: Tower Lights}
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: true}
   Properties: {}
 Properties:
   Autonomous Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
