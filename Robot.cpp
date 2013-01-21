@@ -40,13 +40,13 @@ void Robot::RobotInit() {
   }
 	
 void Robot::AutonomousInit() {
-	if (autonomousCommand != NULL)
-		autonomousCommand->Start();
-	
 	// initally turn off tower lights
 	RobotMap::towerLightsRed->Set(Relay::kOff);
 	RobotMap::towerLightsWht->Set(Relay::kOff);
 	RobotMap::towerLightsBlu->Set(Relay::kOff);
+
+	if (autonomousCommand != NULL)
+		autonomousCommand->Start();
 }
 	
 void Robot::AutonomousPeriodic() {

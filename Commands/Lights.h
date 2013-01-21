@@ -22,11 +22,8 @@
  * @author ExampleAuthor
  */
 class Lights: public Command {
+
 public:
-	bool redLight;
-	bool whtLight;
-	bool bluLight;
-	
 	Lights();
 	virtual void Initialize();
 	virtual void Execute();

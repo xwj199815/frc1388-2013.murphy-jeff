@@ -17,35 +17,53 @@ Lights::Lights() {
 }
 // Called just before this Command runs the first time
 void Lights::Initialize() {
-	redLight = false;
-	whtLight = false;
-	bluLight = false;
 }
+
 // Called repeatedly when this Command is scheduled to run
 void Lights::Execute() {
+	// relay output values; default is Off
+	Relay::Value red = Relay::kOff;
+	Relay::Value wht = Relay::kOff;
+	Relay::Value blu = Relay::kOff;
+
 	// get button values
-	redLight = Robot::oi->redButton->Get();
-	whtLight = Robot::oi->whtButton->Get();
-	bluLight = Robot::oi->bluButton->Get();
+	bool redButton = Robot::oi->redButton->Get();
+	bool whtButton = Robot::oi->whtButton->Get();
+	bool bluButton = Robot::oi->bluButton->Get();
+
+	// get relay values
+	bool redLight = (RobotMap::towerLightsRed->Get() != Relay::kOff);
+	bool whtLight = (RobotMap::towerLightsWht->Get() != Relay::kOff);
+	bool bluLight = (RobotMap::towerLightsBlu->Get() != Relay::kOff);
 	
-	// convert button values to relay value (bool to Robot::Value)
-	Relay::Value red = (redLight)? (Relay::kOn) : (Relay::kOff);
-	Relay::Value wht = (whtLight)? (Relay::kOn) : (Relay::kOff);
-	Relay::Value blu = (bluLight)? (Relay::kOn) : (Relay::kOff);
+	// get relay values: if the button is pressed, invert the relay value
+	if (redButton) {
+		red = (redLight)? (Relay::kOff) : (Relay::kOn);
+	}
+	if (whtButton) {
+		wht = (whtLight)? (Relay::kOff) : (Relay::kOn);
+	}
+	if (bluButton) {
+		blu = (bluLight)? (Relay::kOff) : (Relay::kOn);
+	}
 	
 	// send control values to the relays
 	RobotMap::towerLightsRed->Set(red);
 	RobotMap::towerLightsWht->Set(wht);
 	RobotMap::towerLightsBlu->Set(blu);
 }
+
 // Make this return true when this Command no longer needs to run execute()
 bool Lights::IsFinished() {
-	return false;
+	// run Execute() once, then done
+	return true;
 }
+
 // Called once after isFinished returns true
 void Lights::End() {
 	
 }
+
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void Lights::Interrupted() {
