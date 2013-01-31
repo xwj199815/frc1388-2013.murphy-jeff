@@ -61,6 +61,7 @@ void SmartScope::trigger(int length, int offset) {
 		// histItr now points at the beggining of the trigger window
 		do {
 			SmartDashboard::PutNumber(m_keyName, *histItr);
+			m_triggerCount--;
 		} while ((histItr--) != m_history.begin());
 	}
 }

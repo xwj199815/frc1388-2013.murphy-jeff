@@ -49,7 +49,7 @@ public:
 private:
 	string m_keyName;			// SmartDahsboard keyName
 	unsigned int m_histSize;	// max number of data samples to keep
-	list<double> m_history;		// data history
+	list<double> m_history;		// data history buffer
 	int m_triggerCount;			// number of samples remaining to be displayed
 	int m_triggerOffset;		// amount of time to wait before displaying
 };
