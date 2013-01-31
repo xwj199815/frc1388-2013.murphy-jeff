@@ -10,13 +10,21 @@
 // constructor:
 //   keyName = SmartDashboard keyName
 //   histSize = amount of history to keep
-// putData(double data):
+// sample(double data):
 //   data is pushed to the history, and displayed on the graph when triggered
 // trigger(length, offset):
 //   length = number of data points to display
 //   offset = trigger forward (positive) or backward (negative) in time from now
 //   When you call trigger(), <length> data points are displayed,
 //     starting from now plus or minus <offset> samples
+// 
+// Typical usage:
+// - create a SmartScope object, giving it a keyName and (optionally) histSize:
+//   SmartScope myScope = new SmartScope("My Data", 100);
+// - iteratively call sample(), ideally at a regular interval:
+//   myScope->sample(someValue);
+// - When you want to display a value, issue a trigger:
+//   myScope->trigger(150, -10);    // show 150 samples, starting 10 samples ago
 
 
 #include "SmartDashboard/SmartDashboard.h"
@@ -32,7 +40,7 @@ public:
 	
 	void histSize(unsigned int histSize);	// change the history size
 	
-	void putData(double data);				// push data to history
+	void sample(double data);				// push data to history
 	void trigger(int length, int offset=0);	// trigger and display
 	void clearTrigger();					// clear an active trigger
 	

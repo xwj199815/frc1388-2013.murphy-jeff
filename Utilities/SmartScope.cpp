@@ -18,7 +18,7 @@ void SmartScope::histSize(unsigned int histSize) {
 	}
 }
 
-void SmartScope::putData(double data) {
+void SmartScope::sample(double data) {
 	// Add data to history, and print it if a trigger is active
 	m_history.push_front(data);
 	
@@ -29,6 +29,7 @@ void SmartScope::putData(double data) {
 	
 	// print value if we're in a trigger:
 	if (m_triggerOffset > 0) {
+		// delayed trigger - we're now one sample closer to the trigger
 		m_triggerOffset--;
 	} else if (m_triggerCount > 0) {
 		SmartDashboard::PutNumber(m_keyName, data);
