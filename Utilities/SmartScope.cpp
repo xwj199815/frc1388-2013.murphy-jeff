@@ -38,6 +38,11 @@ void SmartScope::sample(double data) {
 }
 
 void SmartScope::trigger(int length, int offset) {
+	// block new triggers if a trigger is already active
+	if (triggerActive()) {
+		return;
+	}
+	
 	// set a trigger, and print history if offset is negative
 	m_triggerCount = length;
 	m_triggerOffset = offset;
