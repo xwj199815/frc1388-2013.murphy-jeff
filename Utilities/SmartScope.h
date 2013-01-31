@@ -42,6 +42,8 @@ public:
 	
 	void sample(double data);				// push data to history
 	void trigger(int length, int offset=0);	// trigger and display
+	
+	bool triggerActive();					// true if a trigger is in progress
 	void clearTrigger();					// clear an active trigger
 	
 private:

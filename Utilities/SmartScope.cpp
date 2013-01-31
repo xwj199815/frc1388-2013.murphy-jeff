@@ -60,6 +60,11 @@ void SmartScope::trigger(int length, int offset) {
 	}
 }
 
+bool SmartScope::triggerActive() {
+	// return true if a trigger is in progress
+	return ((m_triggerCount != 0) || (m_triggerOffset != 0));
+}
+
 void SmartScope::clearTrigger() {
 	// clear an active trigger
 	m_triggerCount = 0;
