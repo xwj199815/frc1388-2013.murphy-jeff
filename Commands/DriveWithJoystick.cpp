@@ -8,7 +8,7 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in th future.
 #include "DriveWithJoystick.h"
-#include "../Utilities/deadband.h"
+
 DriveWithJoystick::DriveWithJoystick() {
 	// Use requires() here to declare subsystem dependencies
 	// eg. requires(chassis);
@@ -38,6 +38,11 @@ void DriveWithJoystick::Execute() {
 			deadband(driverY, driverDeadband),
 			deadband(driverZ, driverDeadband),
 			Robot::driveTrain->gyro->GetAngle());
+	
+//	Robot::testScope->sample(driverY);
+//	if (driverY != 0) {
+//		Robot::testScope->trigger(100);
+//	}
 }
 // Make this return true when this Command no longer needs to run execute()
 bool DriveWithJoystick::IsFinished() {
@@ -45,9 +50,10 @@ bool DriveWithJoystick::IsFinished() {
 }
 // Called once after isFinished returns true
 void DriveWithJoystick::End() {
-	
+//	Robot::testScope->clearTrigger();
 }
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void DriveWithJoystick::Interrupted() {
+	End();
 }

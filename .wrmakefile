@@ -53,7 +53,7 @@ GIT_TAG :=
 ifneq (,$(GIT_STATUS))
   GIT_VERSION := "$(GIT_VERSION)-modified"
 else
-  GIT_TAG := $(shell git tag --contains $(GIT_VERSION))
+  GIT_TAG := $(shell git tag --contains $(GIT_VERSION) | head -1)
 endif
 
 GitVersion.h:

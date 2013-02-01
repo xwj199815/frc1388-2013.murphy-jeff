@@ -35,7 +35,7 @@ using namespace std;
 
 class SmartScope {
 public:
-	SmartScope(string keyName, unsigned int histSize);
+	SmartScope(string keyName, unsigned int histSize=0);
 	virtual ~SmartScope();
 	
 	void histSize(unsigned int histSize);	// change the history size

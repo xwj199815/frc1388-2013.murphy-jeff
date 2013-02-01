@@ -14,6 +14,7 @@
 
 #include "Commands/Subsystem.h"
 #include "../Robot.h"
+#include "../Utilities/deadband.h"
 
 /**
  *
